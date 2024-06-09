@@ -54,21 +54,24 @@ if uploaded_file is not None:
 
     # Predict button
     if st.button("Predict") and model is not None:
-        with st.spinner("Predicting..."):
-            top_three_labels, top_three_probs = predict_image(cropped_image, model)
-            st.success("Prediction complete!")
+        if cropped_image is None:
+            st.error("Please crop the image before predicting.")
+        else:
+            with st.spinner("Predicting..."):
+                top_three_labels, top_three_probs = predict_image(cropped_image, model)
+                st.success("Prediction complete!")
 
-            # Display predictions
-            st.write(f"Top 3 Predicted Classes:")
-            for label, prob in zip(top_three_labels, top_three_probs):
-                st.write(f"{label}: {prob:.2%}")
+                # Display predictions
+                st.write(f"Top 3 Predicted Classes:")
+                for label, prob in zip(top_three_labels, top_three_probs):
+                    st.write(f"{label}: {prob:.2%}")
 
-            # Display bar chart
-            fig, ax = plt.subplots()
-            ax.barh(top_three_labels, top_three_probs, color='skyblue')
-            ax.set_xlabel('Probability')
-            ax.set_xlim(0, 1)
-            ax.set_title('Top 3 Predictions')
-            st.pyplot(fig)
+                # Display bar chart
+                fig, ax = plt.subplots()
+                ax.barh(top_three_labels, top_three_probs, color='skyblue')
+                ax.set_xlabel('Probability')
+                ax.set_xlim(0, 1)
+                ax.set_title('Top 3 Predictions')
+                st.pyplot(fig)
     elif model is None:
         st.error("Model not loaded. Please check the model path and try again.")
