@@ -62,7 +62,7 @@ if uploaded_file is not None:
                 st.success("Prediction complete!")
 
                 # Display predictions
-                st.write(f"Top 3 Predicted Classes:")
+                # st.write(f"Top 3 Predicted Classes:")
                 for label, prob in zip(top_three_labels, top_three_probs):
                     st.write(f"{label}: {prob:.2%}")
 
