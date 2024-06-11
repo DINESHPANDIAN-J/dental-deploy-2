@@ -166,7 +166,7 @@ if uploaded_file is not None:
 
                 # Get and display suggested classes
                 suggested_classes = get_suggested_classes(top_label)
-                st.write(f"Suggested Classes: {', '.join(suggested_classes)}")
+                st.write(f"Suggested Shades as per Value: {', '.join(suggested_classes)}")
 
                 # # Display bar chart
                 # fig, ax = plt.subplots()
